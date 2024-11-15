@@ -1,0 +1,21 @@
+.wrapper {
+
+}
+
+.main-header {
+  background-color: aqua;
+  height: 100px;
+  
+}
+
+.map {
+  background-color: #92e62b;
+  height: calc(100vh - 100px - 90px);
+  
+}
+
+.form {
+  background-color: #DDDDDD;
+  height: 90px;
+  
+}
