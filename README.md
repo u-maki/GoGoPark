@@ -1,24 +1,89 @@
 # README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column             | Type    | Options     |
+| ------------------ | ------  | ----------- |
+| id                 | integer |
+| nickname           | string  |
+| email              | string  |
+| encrypted_password | string  |
 
-Things you may want to cover:
+### Association
+- has_many :comments
+- has_many :favorites
+- has_many :favorite_parks, through: :favorites, source: :park
 
-* Ruby version
+## Parksテーブル
+| Column             | Type    | Options     |
+| ------------------ | ------  | ----------- |
+| id                 | integer |
+| park_name          | string  |
+| postal_code        | string  |
+| address            | text    |
+| latitude           | integer |
+| longitude          | integer |
 
-* System dependencies
+### Association
+- has_many :comments
+- has_many :favorites
+- has_many :favorited_by_users, through: :favorites, source: :user  
 
-* Configuration
+## Commentsテーブル
+| Column             | Type    | Options     |
+| ------------------ | ------  | ----------- |
+| id                 | integer |
+| content            | text    |
+| user_id            | integer - references Users |
+| park_id            | integer - references Parks |
+| created_at         | datetime |
+| updated_at         | datetime |
 
-* Database creation
+### Association
+- belongs_to :user
+- belongs_to :park
+- has_many :comment_facilities
+- has_many :facilities, through: :comment_facilities
 
-* Database initialization
+## Facilitiesテーブル
+| Column             | Type    | Options     |
+| ------------------ | ------  | ----------- |
+| id                 | integer |
+| toilet             | integer |
+| diaper             | integer |
+| shop               | integer |
+| vending            | integer |
+| parking            | integer |
+| slide              | integer |
+| swing              | integer |
 
-* How to run the test suite
+### Association
+- has_many :comment_facilities
+- has_many :comments, through: :comment_facilities
 
-* Services (job queues, cache servers, search engines, etc.)
+## CommentFacilitiesテーブル
+| Column             | Type    | Options     |
+| ------------------ | ------  | ----------- |
+| id                 |  integer |
+| comment_id         | integer - references Comments |
+| facility_id        | integer - references Facilities |
+| created_at         | datetime |
+| updated_at         | datetime |
 
-* Deployment instructions
+### Association
+- belongs_to :comment
+- belongs_to :facility
 
-* ...
+
+## Favoritesテーブル
+| Column             | Type    | Options     |
+| ------------------ | ------  | ----------- |
+| id                 | integer |
+| user_id            | integer - references Users |
+| park_id            | integer - references Parks |
+| created_at         | datetime |
+| updated_at         | datetime |
+
+### Association
+- belongs_to :user
+- belongs_to :park
+
