@@ -11,6 +11,12 @@ class User < ApplicationRecord
          PASSWORD_REGEX = /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/
   
 
-  validates :password, format: { with: PASSWORD_REGEX, message: 'は半角英字と数字を混合させてください' }
+  validates :password, format: { with: PASSWORD_REGEX, message: 'は半角英字と数字を混合させてください' }, if: :password_required?
   validates :nickname, presence: true
+
+  private
+
+  def password_required?
+    new_record? || password.present?
+  end
 end
