@@ -1,2 +1,36 @@
-<h1>Comments#create</h1>
-<p>Find me in app/views/comments/create.html.erb</p>
+<%= form_with model: [ @park, @comment ], local: true, html: { multipart: true } do |f| %>
+  <div class="comment-form">
+    <h2>コメントを投稿</h2>
+    
+    <!-- コメントテキストエリア -->
+    <div class="form-group">
+      <%= f.label :content, "コメント内容" %>
+      <%= f.text_area :content, rows: 5, placeholder: "コメントを入力してください", class: "form-control" %>
+    </div>
+
+    <!-- 施設情報（チェックボックス） -->
+    <div class="form-group">
+      <h3>施設情報</h3>
+      <div class="checkbox-group">
+        <label><%= f.check_box :toilet %> トイレ</label>
+        <label><%= f.check_box :diaper_changing_station %> オムツ台</label>
+        <label><%= f.check_box :vending_machine %> 自販機</label>
+        <label><%= f.check_box :shop %> 売店</label>
+        <label><%= f.check_box :parking %> 駐車場</label>
+        <label><%= f.check_box :slide %> 滑り台</label>
+        <label><%= f.check_box :swing %> ブランコ</label>
+      </div>
+    </div>
+
+    <!-- 写真アップロード -->
+    <div class="form-group">
+      <%= f.label :photos, "写真をアップロード" %>
+      <%= f.file_field :photos, multiple: true, class: "file-input" %>
+    </div>
+
+    <!-- 投稿ボタン -->
+    <div class="form-group">
+      <%= f.submit "投稿する", class: "btn-submit" %>
+    </div>
+  </div>
+<% end %>
