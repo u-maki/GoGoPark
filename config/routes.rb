@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   resources :parks do
     # 公園に対するコメント機能
     resources :comments, only: [:create]
+    resources :parks, only: [:show]
   end
 end
