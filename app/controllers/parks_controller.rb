@@ -3,7 +3,7 @@ class ParksController < ApplicationController
     if params[:id] && Park.exists?(id: params[:id])
       # ローカルDBの公園情報を取得
       @park = Park.find(params[:id])
-      @comments = @park.comments
+      @comments = Comment.where(google_place_id: params[:place_id])
     elsif params[:place_id]
       # Google Place APIから公園情報を取得
       response = HTTParty.get("https://maps.googleapis.com/maps/api/place/details/json", {

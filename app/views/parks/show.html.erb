@@ -52,8 +52,30 @@
 <% if @google_park_data && @google_park_data["photos"] %>
   <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%= @google_park_data["photos"].first["photo_reference"] %>&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>" alt="公園の写真">
 <% end %>
+<h2>投稿されたコメント</h2>
+  <div class="comments">
+    <% if @comments.present? %>
+      <% @comments.each do |comment| %>
+        <div class="comment">
+          <p><strong><%= comment.user.name %></strong>: <%= comment.content %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <p>まだ投稿がありません！是非、投稿お願いします♡</p>
+    <% end %>
+  </div>
 
-<%= link_to '投稿する', new_park_comment_path(@park), class: 'btn btn-primary' %>
+<% if @park %>
+  <!-- Railsルートに基づいてpark_idを利用 -->
+  <%= link_to '投稿する', new_park_comment_path(@park), class: 'btn btn-primary' %>
+<% elsif @google_park_data %>
+  <!-- Google Placesのplace_idを利用 -->
+  <%= link_to '投稿する', new_comment_path(place_id: params[:place_id]), class: 'btn btn-primary' %>
+<% else %>
+  <p>公園情報が見つかりません。</p>
+<% end %>
+
+
 
 </body>
 </html>

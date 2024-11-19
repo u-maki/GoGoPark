@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
       @comment = @park.comments.build
     elsif params[:place_id]
       @place_id = params[:place_id]
-      @comment = Comment.new
+      @comment = Comment.new(google_place_id: @place_id)
     else
       flash[:alert] = "公園情報が見つかりません。"
       redirect_to root_path

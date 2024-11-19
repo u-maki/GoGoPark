@@ -8,9 +8,10 @@ Rails.application.routes.draw do
   # 公園リソース
   resources :parks do
     # 公園に対するコメント機能
-    resources :comments, only: [:create]
+    resources :comments, only: [:create,:new]
     resources :parks, only: [:show]
     
   end
   get 'parks/details/:place_id', to: 'parks#show', as: :google_park
+  get 'comments/new', to: 'comments#new', as: :new_comment
 end
