@@ -1,0 +1,26 @@
+/* 地図のサイズを指定 */
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+/* 公園リストのスタイル */
+#parks-list {
+  margin-top: 20px;
+}
+
+.park-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.park-item h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.park-item p {
+  margin: 5px 0;
+  color: #555;
+}

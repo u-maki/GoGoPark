@@ -1,8 +1,7 @@
-<!-- app/views/parks/show.html.erb -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @park&.name || @google_park_data['name'] %></title>
+  <title><%= @park&.name || @google_park_data&.dig('name') || '公園詳細' %></title>
   <style>
     .comments {
       margin-top: 20px;
@@ -18,31 +17,45 @@
       color: #555;
       font-style: italic;
     }
+
+    .photo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .photo img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .comment-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    .comment-button:hover {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
-  <h1><%= @park&.name || @google_park_data['name'] %></h1>
-  <p><%= @park&.address || @google_park_data['formatted_address'] %></p>
+  <h1><%= @park&.name || @google_park_data&.dig("name") || "公園詳細" %></h1>
+<p><%= @park&.address || @google_park_data&.dig("formatted_address") || "住所情報がありません" %></p>
 
-  <h2>投稿されたコメント</h2>
-  <div class="comments">
-    <% if @park && @comments.any? %>
-      <% @comments.each do |comment| %>
-        <div class="comment">
-          <p><strong><%= comment.user.name %></strong>: <%= comment.content %></p>
-        </div>
-      <% end %>
-    <% elsif @google_park_data %>
-      <div class="no-comments">
-        <p>この公園に関する情報はまだ投稿されていません。</p>
-        <p>Googleからの情報:</p>
-        <p><%= @google_park_data['name'] %></p>
-        <p><%= @google_park_data['formatted_address'] %></p>
-        <p><a href="<%= @google_park_data['url'] %>" target="_blank">Google Mapsで詳細を見る</a></p>
-      </div>
-    <% else %>
-      <p>情報を取得できませんでした。</p>
-    <% end %>
-  </div>
+<% if @google_park_data && @google_park_data["photos"] %>
+  <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%= @google_park_data["photos"].first["photo_reference"] %>&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>" alt="公園の写真">
+<% end %>
+
+<%= link_to '投稿する', new_park_comment_path(@park), class: 'btn btn-primary' %>
+
 </body>
 </html>
+
+  

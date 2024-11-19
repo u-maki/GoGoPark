@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     # 公園に対するコメント機能
     resources :comments, only: [:create]
     resources :parks, only: [:show]
+    
   end
+  get 'parks/details/:place_id', to: 'parks#show', as: :google_park
 end
