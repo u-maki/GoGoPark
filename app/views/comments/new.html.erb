@@ -9,14 +9,13 @@
   <div class="form-group">
     <h3>施設情報</h3>
     <div class="checkbox-group">
-      <%= form.check_box :toilet %> トイレ<br>
-      <%= form.check_box :diaper_changing_station %> オムツ台<br>
-      <%= form.check_box :vending_machine %> 自販機<br>
-      <%= form.check_box :shop %> 売店<br>
-      <%= form.check_box :parking %> 駐車場<br>
-      <%= form.check_box :slide %> 滑り台<br>
-      <%= form.check_box :swing %> ブランコ<br>
-    </div>
+  <% Facility::FACILITY_ATTRIBUTES.each do |attribute| %>
+    <label>
+      <%= form.check_box attribute %>
+      <%= Facility.human_attribute_name(attribute) %>
+    </label><br>
+  <% end %>
+   </div>
   </div>
 
   <!-- 写真アップロード -->

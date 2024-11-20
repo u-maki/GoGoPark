@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'parks/details/:place_id', to: 'parks#show', as: :google_park
   resources :parks do
     # 公園に対するコメント機能
-    resources :comments, only: [:create, :new] # 必要なアクションのみ定義
+    resources :comments, only: [:create, :new, :index] # 必要なアクションのみ定義
   end
 
   # Google Place ID を利用したコメント機能

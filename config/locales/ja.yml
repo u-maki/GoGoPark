@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      facility:
+        toilet: "トイレ"
+        diaper_changing_station: "オムツ台"
+        vending_machine: "自販機"
+        shop: "売店"
+        parking: "駐車場"
+        slide: "滑り台"
+        swing: "ブランコ"
