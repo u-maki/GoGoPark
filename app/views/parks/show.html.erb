@@ -65,15 +65,16 @@
     <% end %>
   </div>
 
-<% if @park %>
+
   <!-- Railsルートに基づいてpark_idを利用 -->
-  <%= link_to '投稿する', new_park_comment_path(@park), class: 'btn btn-primary' %>
+  <% if @park %>
+  <%= link_to '投稿する', new_park_comment_path(@park), class: 'comment-button' %>
 <% elsif @google_park_data %>
-  <!-- Google Placesのplace_idを利用 -->
-  <%= link_to '投稿する', new_comment_path(place_id: params[:place_id]), class: 'btn btn-primary' %>
+  <%= link_to '投稿する', new_comment_path(place_id: params[:place_id]), class: 'comment-button' %>
 <% else %>
   <p>公園情報が見つかりません。</p>
 <% end %>
+
 
 
 
