@@ -8,10 +8,16 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <title>Your App Name</title>
+  <%= include_gon %>
+  <!-- Google Maps JavaScript API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2geOR61ptjB2NxokCTPG4EGYUGW2XDaU&libraries=places" async defer></script>
   </head>
 
   <body>
-    
+    <%= render 'shared/header' %>
+    <main style="padding: 20px; max-width: 1200px; margin: auto;">
     <%= yield %>
   </body>
 </html>

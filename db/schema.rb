@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_18_141921) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_20_080325) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -54,6 +54,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_18_141921) do
     t.bigint "park_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "google_place_id"
+    t.boolean "toilet", default: false
+    t.boolean "diaper_changing_station", default: false
+    t.boolean "vending_machine", default: false
+    t.boolean "shop", default: false
+    t.boolean "parking", default: false
+    t.boolean "slide", default: false
+    t.boolean "swing", default: false
     t.index ["park_id"], name: "index_comments_on_park_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -85,6 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_18_141921) do
     t.integer "user_ratings_total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "google_place_id"
   end
 
   create_table "users", charset: "utf8mb3", force: :cascade do |t|

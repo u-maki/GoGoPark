@@ -17,3 +17,105 @@
  * {
   box-sizing: border-box;
 }
+
+/* ヘッダー全体のスタイル */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 左側のロゴ部分 */
+.left-header .header-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 右側のボタン部分 */
+.right-header .header-button {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+/* リンクのスタイル */
+.header-button li a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 14px;
+}
+
+.header-button li a:hover {
+  color: #0056b3;
+}
+
+/* ログイン・ログアウトボタンのスタイル */
+.login, .logout, .sign-up, .user-nickname {
+  font-weight: bold;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* 地図のサイズを指定 */
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+/* 公園リストのスタイル */
+#parks-list {
+  margin-top: 20px;
+}
+
+.park-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.park-item h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.park-item p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* 地図のサイズを指定 */
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+/* 公園リストのスタイル */
+#parks-list {
+  margin-top: 20px;
+}
+
+.park-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.park-item h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.park-item p {
+  margin: 5px 0;
+  color: #555;
+}
