@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.user = current_user
+    @comment = current_user.comments.build(comment_params)
 
     if params[:place_id]
       @park = Park.fetch_from_google_places(params[:place_id])

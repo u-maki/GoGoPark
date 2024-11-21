@@ -28,12 +28,19 @@
 
   <!-- 写真アップロード -->
   <div class="form-group">
-    <%= form.label :photos, "写真をアップロード" %>
+    <%= form.label :photos, "写真をアップロード（最大5枚）" %>
     <%= form.file_field :photos, multiple: true, class: "file-input" %>
+    <%= form.file_field :photos, multiple: true, class: "file-input" %>
+    <%= form.file_field :photos, multiple: true, class: "file-input" %>
+    <%= form.file_field :photos, multiple: true, class: "file-input" %>
+    <%= form.file_field :photos, multiple: true, class: "file-input" %>
+    
   </div>
 
   <div class="form-group">
     <%= form.submit "投稿する", class: "btn btn-primary" %>
   </div>
+  <!-- 「戻る」ボタン -->
+  <%= link_to '戻る', request.referer || root_path, class: 'btn btn-secondary' %>
 
 <% end %>

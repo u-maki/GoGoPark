@@ -2,98 +2,104 @@
 <html>
 <head>
   <title><%= @park&.name || @google_park_data&.dig('name') || '公園詳細' %></title>
-  <style>
-    .comments {
-      margin-top: 20px;
-    }
-
-    .comment {
-      border: 1px solid #ddd;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-
-    .no-comments {
-      color: #555;
-      font-style: italic;
-    }
-
-    .photo {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .photo img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-    }
-
-    .comment-button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      text-align: center;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      margin-top: 20px;
-    }
-
-    .comment-button:hover {
-      background-color: #45a049;
-    }
-  </style>
 </head>
 <body>
   <h1><%= @park&.name || @google_park_data&.dig("name") || "公園詳細" %></h1>
   <p><%= @park&.address || @google_park_data&.dig("formatted_address") || "住所情報がありません" %></p>
 
-<% if @google_park_data && @google_park_data["photos"] %>
+  <% if @google_park_data && @google_park_data["photos"] %>
     <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%= @google_park_data["photos"].first["photo_reference"] %>&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>" alt="公園の写真">
-<% end %>
+  <% end %>
+
   <h2>投稿されたコメント</h2>
   <div class="comments">
     <% if @comments.any? %>
-  <ul>
-    <% @comments.each do |comment| %>
-      <li>
-        <p><strong><%= comment.user.nickname %></strong>: <%= comment.content %></p>
-        <p>トイレ: <%= comment.toilet ? "あり" : "なし" %></p>
-        <p>オムツ台: <%= comment.diaper_changing_station ? "あり" : "なし" %></p>
-        <p>自販機: <%= comment.vending_machine ? "あり" : "なし" %></p>
-        <p>売店: <%= comment.shop ? "あり" : "なし" %></p>
-        <p>駐車場: <%= comment.parking ? "あり" : "なし" %></p>
-        <p>滑り台: <%= comment.slide ? "あり" : "なし" %></p>
-        <p>ブランコ: <%= comment.swing ? "あり" : "なし" %></p>
+      <ul>
+        <% @comments.each do |comment| %>
+          <li>
+            <!-- 投稿時間を表示 -->
+          <p>投稿日時: <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+            <!-- 投稿者情報とコメント内容 -->
+          <p>
+            <strong><%= comment.user.nickname %></strong>: <%= comment.content %>
+          </p>
 
-        <!-- コメントに写真がある場合 -->
-        <% if comment.photos.attached? %>
-          <h4>投稿された写真</h4>
-          <div class="comment-photos">
-            <% comment.photos.each do |photo| %>
-              <%= image_tag photo, class: "comment-photo" %> <!-- 画像を表示 -->
+          
+
+            <h4>施設情報</h4>
+            <!-- コメントに関連するチェックボックス -->
+            <div class="checkbox-group">
+              
+              <label>
+                <input type="checkbox" disabled <%= comment.toilet ? "checked" : "" %>> トイレ
+              </label><br>
+              <label>
+                <input type="checkbox" disabled <%= comment.diaper_changing_station ? "checked" : "" %>> オムツ台
+              </label><br>
+              <label>
+                <input type="checkbox" disabled <%= comment.vending_machine ? "checked" : "" %>> 自販機
+              </label><br>
+              <label>
+                <input type="checkbox" disabled <%= comment.shop ? "checked" : "" %>> 売店
+              </label><br>
+              <label>
+                <input type="checkbox" disabled <%= comment.parking ? "checked" : "" %>> 駐車場
+              </label><br>
+              <label>
+                <input type="checkbox" disabled <%= comment.slide ? "checked" : "" %>> 滑り台
+              </label><br>
+              <label>
+                <input type="checkbox" disabled <%= comment.swing ? "checked" : "" %>> ブランコ
+              </label>
+            </div>
+            
+            <!-- コメントに写真がある場合 -->
+            <% if comment.photos.attached? %>
+              <h4>投稿された写真</h4>
+              <div class="comment-photos">
+                <% comment.photos.each do |photo| %>
+                  <img src="<%= url_for(photo) %>" alt="投稿写真" class="thumbnail" onclick="openModal(this)">
+                <% end %>
+              </div>
             <% end %>
-          </div>
+          </li>
         <% end %>
-      </li>
-    <% end %>
-  </ul>
+      </ul>
     <% else %>
       <p>まだ投稿がありません！是非、投稿お願いします♡</p>
     <% end %>
   </div>
+  <!-- 「戻る」ボタン -->
+      <%= link_to '戻る', request.referer || root_path, class: 'btn btn-secondary' %>
+
+  <!-- モーダル -->
+  <div id="photoModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
 
   <!-- 投稿リンクを表示 -->
+  <% if user_signed_in? %>
   <% if @park %>
     <%= link_to '投稿する', new_park_comment_path(@park), class: 'comment-button' %>
   <% elsif @google_park_data %>
     <%= link_to '投稿する', new_comment_path(place_id: params[:place_id]), class: 'comment-button' %>
-  <% else %>
-    <p>公園情報が見つかりません。</p>
   <% end %>
+<% else %>
+  <%= link_to '投稿するにはログインしてください', new_user_session_path, class: 'comment-button' %>
+<% end %>
+  <script>
+    function openModal(image) {
+      const modal = document.getElementById("photoModal");
+      const modalImage = document.getElementById("modalImage");
+      modal.style.display = "block";
+      modalImage.src = image.src; // サムネイル画像をモーダルに設定
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("photoModal");
+      modal.style.display = "none";
+    }
+  </script>
 </body>
-
 </html>
-
-  

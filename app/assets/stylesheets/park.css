@@ -1,0 +1,132 @@
+/* 公園詳細ページのタイトル */
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* 公園住所 */
+p {
+  font-size: 16px;
+  text-align: center;
+}
+
+/* 公園の写真 */
+img {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* コメントリスト */
+.comments ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comments li {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #f9f9f9;
+}
+
+/* コメントの各項目 */
+.comments p {
+  margin: 5px 0;
+}
+
+/* 写真ギャラリー */
+.comment-photos {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.comment-photo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* 投稿ボタン */
+.comment-button {
+  display: block;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 20px auto;
+  width: fit-content;
+}
+
+.comment-button:hover {
+  background-color: #0056b3;
+}
+
+/* サムネイルのスタイル */
+.thumbnail {
+  width: 100px;
+  height: auto;
+  margin: 5px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* モーダルのスタイル */
+.modal {
+  display: none; /* 初期状態は非表示 */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8); /* 背景の暗さ */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+.back-button {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.back-button:hover {
+  background-color: #e0e0e0;
+  color: #000;
+}
