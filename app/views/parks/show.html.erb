@@ -17,15 +17,21 @@
   <div class="comments">
     <% if @comments.any? %>
       <ul>
-        <% @comments.each do |comment| %>
-          <li>
+       <% @comments.each do |comment| %>
+  <li>
             <!-- 投稿時間を表示 -->
-          <p>投稿日時: <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
-            <!-- 投稿者情報とコメント内容 -->
-          <p>
-            <strong><%= comment.user.nickname %></strong>: <%= comment.content %>
-          </p>
+    <p>投稿日時: <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+    <p><strong><%= comment.user&.nickname || "不明なユーザー" %></strong>: <%= comment.content %></p>
 
+   <!-- ログイン中のユーザーが投稿者である場合のみ編集・削除を表示 -->
+    <% if user_signed_in? && current_user == comment.user %>
+      <%= link_to "編集", edit_park_comment_path(comment.park_id, comment, return_to: request.original_url), class: "btn btn-warning" %>
+
+
+      <%= link_to '削除', park_comment_path(comment.park_id, comment), data: { turbo_method: :delete, confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+    <% end %>
+
+  
           
 
             <h4>施設情報</h4>

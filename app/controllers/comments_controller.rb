@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user! # ログインユーザーのみ許可
+  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
   def new
     if params[:place_id]
       @place_id = params[:place_id]
@@ -42,9 +45,49 @@ class CommentsController < ApplicationController
     @park = Park.find(params[:park_id])
     @comments = @park.comments
   end
+
+  def edit
+    @park = @comment.park || Park.find_by(google_place_id: params[:place_id])
+    
+  end
+  
+
+  def update
+    if @comment.update(comment_params)
+      flash[:notice] = "コメントを更新しました。"
+      # 公園の種類に応じて適切な詳細ページにリダイレクト
+      if @comment.google_place_id
+        redirect_to google_park_path(place_id: @comment.google_place_id)
+      else
+        redirect_to park_path(@comment.park_id)
+      end
+    else
+      flash[:alert] = "コメントの更新に失敗しました。"
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  
+  
+
+  def destroy
+    @park = Park.find(params[:park_id])
+    @comment.destroy
+    redirect_to google_park_path(place_id: @comment.google_place_id)
+  end
+
   
 
   private
+
+  def authorize_user
+    unless @comment.user == current_user
+      flash[:alert] = "権限がありません。"
+      redirect_to root_path
+    end
+  end
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
   def comment_params
     params.require(:comment).permit(
@@ -62,6 +105,6 @@ class CommentsController < ApplicationController
         %w[toilet diaper_changing_station vending_machine shop parking slide swing].each do |field|
           whitelisted[field] = ActiveRecord::Type::Boolean.new.cast(whitelisted[field])
         end
-      end
+    end
   end
 end
