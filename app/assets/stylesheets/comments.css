@@ -1,7 +1,7 @@
 /* 全体のレイアウト */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f4f4f9;
+  background-color: #f3f8e9;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,6 +10,10 @@ body {
 /* フォームのレイアウト */
 h1 {
   text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+h3 {
   color: #333;
   margin-bottom: 20px;
 }
@@ -23,7 +27,7 @@ textarea.form-control {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ddd;
+  border: 5px solid #9de4f6;
   border-radius: 5px;
   resize: vertical;
 }
@@ -33,7 +37,7 @@ textarea.form-control {
   margin-top: 15px;
   padding: 10px;
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 5px solid #eba2df;
   border-radius: 5px;
   display: flex; /* 横並びにするための設定 */
   flex-wrap: wrap; /* 画面幅に合わせて自動で折り返し */
@@ -78,13 +82,13 @@ textarea.form-control {
   width: 100%;
   background-color: #f9f9f9;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 5px solid #a7ee69;
   border-radius: 5px;
 }
 
 /* 投稿ボタン */
 .btn-primary {
-  background-color: #007bff;
+  background-color: #9de4f6;
   color: white;
   padding: 10px 15px;
   font-size: 16px;
@@ -94,12 +98,12 @@ textarea.form-control {
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #9de4f6;
 }
 
 /* 戻るボタン */
 .btn-secondary {
-  background-color: #6c757d;
+  background-color: #a7ee69;
   color: white;
   padding: 10px 15px;
   font-size: 16px;
