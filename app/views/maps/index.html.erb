@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nearby Parks</title>
-  <%= stylesheet_link_tag 'map', media: 'all' %>
+ <title>Nearby Parks</title>
+<%= stylesheet_link_tag 'map', media: 'all' %>
 </head>
 <body>
   <h1>現在地周辺の公園</h1>
-  <div id="map"></div>
+<div id="map"></div>
 
   <!-- 公園リスト表示用のdiv -->
   <div id="parks-list"></div>
 
-  <%= javascript_include_tag 'map' %>
-  <script async
+<%= javascript_include_tag 'map' %>
+<script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2geOR61ptjB2NxokCTPG4EGYUGW2XDaU&libraries=places&callback=initMap">
-  </script>
+</script>
 </body>
 </html>

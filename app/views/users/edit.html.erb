@@ -3,17 +3,14 @@
     <div class='account-page__inner--left account-page__header'>
       <h2>Edit Account</h2>
       <h5>アカウントの編集</h5>
-      <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn'%>
-      <%= link_to "Topに戻る", root_path, class: 'btn'%>
+      
     </div>
     <div class='account-page__inner--right user-form'>
       <%= form_with model: current_user, local: true do |f|%>
         <div class='field'>
           <div class='field-label'>
-            <%= f.label :nickname%>
-          </div>
-          <div class='field-input'>
-            <%= f.text_field :nickname, autofocus: true%>
+            <%= f.label :nickname %> <em>(12 characters maximum)</em><br />
+            <%= f.text_field :nickname, autofocus: true, maxlength: "12" %>
           </div>
         </div>
         <div class='field'>

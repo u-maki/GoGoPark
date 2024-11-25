@@ -106,6 +106,8 @@ GEM
       i18n (>= 0.7)
       multi_json
       request_store (>= 1.0)
+    google_places (2.0.0)
+      httparty (>= 0.13.1)
     httparty (0.22.0)
       csv
       mini_mime (>= 1.0.0)
@@ -266,6 +268,7 @@ DEPENDENCIES
   debug
   devise
   gon
+  google_places
   httparty
   image_processing (~> 1.2)
   importmap-rails
