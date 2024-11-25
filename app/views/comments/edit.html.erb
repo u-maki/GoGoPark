@@ -1,6 +1,17 @@
-<%= stylesheet_link_tag 'comments', media: 'all' %>
-<h1>コメントを投稿</h1>
-<%= form_with model: @comment, url: comments_path(place_id: params[:place_id]), local: true do |form| %>
+<h1>コメント編集</h1>
+
+<%= form_with(model: [@park, @comment], local: true) do |form| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> が発生しました:</h2>
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= form.label :content, "コメント内容" %>
     <%= form.text_area :content, class: "form-control" %>
@@ -27,21 +38,19 @@
    </div>
   </div>
 
-  <!-- 写真アップロード -->
-  <div class="form-group">
-    <%= form.label :photos, "写真をアップロード（最大5枚）" %>
+  <div class="field">
+  <%= form.label :photos, "写真をアップロード（最大5枚）" %>
     <%= form.file_field :photos, multiple: true, class: "file-input" %>
     <%= form.file_field :photos, multiple: true, class: "file-input" %>
     <%= form.file_field :photos, multiple: true, class: "file-input" %>
     <%= form.file_field :photos, multiple: true, class: "file-input" %>
     <%= form.file_field :photos, multiple: true, class: "file-input" %>
-    
-  </div>
+</div>
 
-  <div class="form-group">
-    <%= form.submit "投稿する", class: "btn btn-primary" %>
-  </div>
-  <!-- 「戻る」ボタン -->
-  <%= link_to '戻る', request.referer || root_path, class: 'btn btn-secondary' %>
 
+  <div class="actions">
+    <%= form.submit "更新する", class: "btn btn-primary" %>
+  </div>
 <% end %>
+
+<%= link_to '戻る', park_path(@park), class: 'btn btn-secondary' %>

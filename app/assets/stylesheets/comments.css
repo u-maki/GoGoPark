@@ -1,0 +1,147 @@
+/* 全体のレイアウト */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f3f8e9;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* フォームのレイアウト */
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+h3 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* テキストエリア */
+textarea.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 5px solid #9de4f6;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+/* チェックボックスグループのレイアウト */
+.checkbox-group {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #fff;
+  border: 5px solid #eba2df;
+  border-radius: 5px;
+  display: flex; /* 横並びにするための設定 */
+  flex-wrap: wrap; /* 画面幅に合わせて自動で折り返し */
+}
+
+/* チェックボックスのラベル */
+.checkbox-group label {
+  font-size: 16px;
+  color: #333;
+  display: inline-block;
+  margin-right: 20px; /* チェックボックス間のスペースを調整 */
+  margin-bottom: 10px; /* 余白を調整 */
+  width: 110px; /* チェックボックスのラベルの幅を広げる */
+}
+
+/* チェックボックスのスタイル */
+.checkbox-group input[type="checkbox"] {
+  margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+}
+
+/* レスポンシブデザイン - 小さな画面でも1列に */
+@media (max-width: 768px) {
+  .checkbox-group {
+    flex-direction: column; /* モバイル画面で縦に並べる */
+  }
+  .checkbox-group label {
+    margin-right: 0;
+    margin-bottom: 5px; /* 縦並びの時の間隔を調整 */
+    width: 100%; /* ラベルの幅を100%にして縦並び時のレイアウトを調整 */
+  }
+}
+
+
+/* ファイルアップロード */
+.file-input {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.file-input[type="file"] {
+  display: block;
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 5px solid #a7ee69;
+  border-radius: 5px;
+}
+
+/* 投稿ボタン */
+.btn-primary {
+  background-color: #9de4f6;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #9de4f6;
+}
+
+/* 戻るボタン */
+.btn-secondary {
+  background-color: #a7ee69;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* コメントのリスト */
+.comments {
+  margin-top: 30px;
+}
+
+.comments ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.comments li {
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.comments li p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.comments li p strong {
+  font-size: 16px;
+  color: #007bff;
+}
+
