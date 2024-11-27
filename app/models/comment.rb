@@ -7,6 +7,7 @@ class Comment < ApplicationRecord
   validates :toilet, :diaper_changing_station, :vending_machine, :shop,
             :parking, :slide, :swing, inclusion: { in: [true, false] }, allow_nil: true
   validate :google_place_id_or_park_id
+  validate :photos_count_within_limit
 
   private
 
@@ -21,4 +22,5 @@ class Comment < ApplicationRecord
       errors.add(:photos, "は最大5枚までアップロード可能です。")
     end
   end
+  
 end

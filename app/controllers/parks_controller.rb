@@ -9,12 +9,15 @@ class ParksController < ApplicationController
         @comments = @park.comments
       else
         # データベースに該当する公園が見つからない場合、Google Places API から情報を取得
-        fetch_google_park_data(params[:place_id])
+      fetch_google_park_data(params[:place_id])
       end
     else
-      flash[:alert] = "公園が見つかりません。"
-      redirect_to root_path
+      @park = Park.find(params[:id])
+      @comments = @park.comments
     end
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "公園が見つかりません。"
+    redirect_to root_path
   end
   
   private
