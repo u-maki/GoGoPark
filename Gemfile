@@ -80,3 +80,6 @@ gem 'image_processing', '~> 1.2'
 gem 'httparty'
 gem 'gon'
 gem 'google_places'
+group :production do
+  gem 'pg'
+end
