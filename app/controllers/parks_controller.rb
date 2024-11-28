@@ -7,9 +7,10 @@ class ParksController < ApplicationController
       if @park
         # 公園に関連するコメントを取得
         @comments = @park.comments
+
       else
         # データベースに該当する公園が見つからない場合、Google Places API から情報を取得
-      fetch_google_park_data(params[:place_id])
+        fetch_google_park_data(params[:place_id])
       end
     else
       @park = Park.find(params[:id])
@@ -19,9 +20,9 @@ class ParksController < ApplicationController
     flash[:alert] = "公園が見つかりません。"
     redirect_to root_path
   end
-  
+
   private
-  
+
   # Google Places API から公園情報を取得
   def fetch_google_park_data(place_id)
     response = HTTParty.get("https://maps.googleapis.com/maps/api/place/details/json", {

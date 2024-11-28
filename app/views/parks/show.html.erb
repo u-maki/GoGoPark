@@ -22,7 +22,7 @@
   <li>
     <div class="comment-header">
     <div class="comment-user">
-      <p><strong><%= comment.user&.nickname || "不明なユーザー" %></strong></p>
+      
     </div>
     <% if user_signed_in? && current_user == comment.user %>
       <div class="comment-actions">
@@ -31,6 +31,11 @@
       </div>
     <% end %>
   </div>
+  <!-- コメント内容 -->
+  <div class="comment-content">
+    <p><%= comment.content %></p>
+  </div>
+
 
             <h4>施設情報</h4>
             <!-- コメントに関連するチェックボックス -->
@@ -68,6 +73,7 @@
                 <% end %>
               </div>
             <% end %>
+            <p>投稿者：<strong><%= comment.user&.nickname || "不明なユーザー" %></strong></p>
             <div class="date">
              <!-- 投稿時間を表示 -->
             <p>投稿日時: <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>

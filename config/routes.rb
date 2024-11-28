@@ -16,3 +16,5 @@ Rails.application.routes.draw do
   # 独立したコメント作成ルート（Google Place ID 対応）
   resources :comments, only: [:new, :create]
 end
+
+
