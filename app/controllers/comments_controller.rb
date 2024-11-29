@@ -36,11 +36,11 @@ class CommentsController < ApplicationController
   
     # コメント保存処理
     if @comment.save
-      flash[:notice] = "コメントを投稿しました。"
+      flash[:success] = "コメントを投稿しました。"
       # Google Place ID を使った場合とローカルの公園IDを使った場合でリダイレクト先を切り替え
       redirect_to params[:place_id] ? google_park_parks_path(place_id: params[:place_id]) : park_path(@park)
     else
-      flash[:alert] = "コメントの投稿に失敗しました。"
+      flash.now[:failure] = "コメントの投稿に失敗しました。"
       render :new, status: :unprocessable_entity
     end
   end
@@ -76,7 +76,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      flash[:notice] = "コメントを更新しました。"
+      flash[:success] = "コメントを更新しました。"
       # 公園の種類に応じて適切な詳細ページにリダイレクト
       if @comment.google_place_id
         redirect_to google_park_parks_path(place_id: @comment.google_place_id)
@@ -84,7 +84,7 @@ class CommentsController < ApplicationController
         redirect_to park_path(@comment.park_id)
       end
     else
-      flash[:alert] = "コメントの更新に失敗しました。"
+      flash.now[:failure] = "コメントの更新に失敗しました。"
       render :edit, status: :unprocessable_entity
     end
   end
