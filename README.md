@@ -1,15 +1,41 @@
+# GoGoPark
+
+## ◾サービス概要
+公園検索アプリは、近くの公園を簡単に見つけることができるウェブアプリケーションです。Google Place APIを活用して、公園の位置情報や詳細を提供します。また、ユーザーが登録し、コメントを投稿することで、コミュニティとの交流を深める機能もあります。
+
+## ◾主な機能
+
+### メイン機能
+- 公園検索: 現在地を基に、周辺の公園を検索。
+
+### その他機能
+- 公園の詳細表示: 公園の名前、住所、写真、評価などを表示。
+- ユーザー登録: ユーザーはアカウントを作成してログイン可能。
+- コメント機能: 公園についての感想や情報を他のユーザーと共有。
+
+### これkら実装したい機能
+- マイページ機能： お気に入りの公園登録や、いいね👍の登録。
+- 住所検索機能： 特定の住所を検索してその周辺の公園情報の表示。
+
+## ◾使用技術
+### バックエンド
+- Ruby 3.2.0
+- Ruby on Rails 7.0.0
+- PostgreSQL
+- gem
+  - devise
+  - google_places
+  - gon
+
+- API
+  - Google Maps JavaScript API
+  - Google Places API
+  - Google Geolocation API
+    
+### インフラ
+- render
+
 # README
-
-<h1 align="center">こんにちは 👋、u-maki です</h1>
-<h3 align="center">公園検索アプリは、近くの公園を簡単に見つけることができるウェブ アプリケーションです。Google プレイスAPIを活用して、公園の位置情報や詳細を提供します。また、ユーザーが登録し、コメントを投稿することで、コミュニティとの交流を深める機能もあります。</h3>
-
-<h3 align=" left">ご連絡ください:</h3>
-<p align="left">
-</p>
-
-<h3 align="left">言語とツール:</h3>
-<p align="left"> <a href="https://developer.mozilla.org/en-US/docs/Web /JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/ master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://rubyonrails.org" target= "_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rails/rails-original-wordmark.svg" alt="rails" width=" 40" 高さ="40"/> </a> <a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/ruby/ruby-original.svg" alt="ルビー" 幅="40" 高さ="40"/> </a> </p>
-
 ## usersテーブル
 
 | Column             | Type    | Options     |
