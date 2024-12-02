@@ -1,12 +1,13 @@
 # README
+
 ## usersテーブル
 
 | Column             | Type    | Options     |
 | ------------------ | ------  | ----------- |
-| id                 | integer |
-| nickname           | string  |
-| email              | string  |
-| encrypted_password | string  |
+| id                 | integer | null: false, primary key |
+| nickname           | string  | null: false |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false |
 
 ### Association
 - has_many :comments
@@ -16,12 +17,12 @@
 ## Parksテーブル
 | Column             | Type    | Options     |
 | ------------------ | ------  | ----------- |
-| id                 | integer |
-| park_name          | string  |
+| id                 | integer | null: false, primary key |
+| park_name          | string  | null: false |
 | postal_code        | string  |
 | address            | text    |
-| latitude           | integer |
-| longitude          | integer |
+| latitude           | integer | null: false |
+| longitude          | integer | null: false |
 
 ### Association
 - has_many :comments
@@ -31,12 +32,12 @@
 ## Commentsテーブル
 | Column             | Type    | Options     |
 | ------------------ | ------  | ----------- |
-| id                 | integer |
-| content            | text    |
+| id                 | integer | null: false, primary key |
+| content            | text    | null: false |
 | user_id            | integer - references Users |
 | park_id            | integer - references Parks |
-| created_at         | datetime |
-| updated_at         | datetime |
+| created_at         | datetime | null: false |
+| updated_at         | datetime | null: false |
 
 ### Association
 - belongs_to :user
@@ -47,7 +48,7 @@
 ## Facilitiesテーブル
 | Column             | Type    | Options     |
 | ------------------ | ------  | ----------- |
-| id                 | integer |
+| id                 | integer | null: false, primary key |
 | toilet             | integer |
 | diaper             | integer |
 | shop               | integer |
@@ -63,11 +64,11 @@
 ## CommentFacilitiesテーブル
 | Column             | Type    | Options     |
 | ------------------ | ------  | ----------- |
-| id                 |  integer |
-| comment_id         | integer - references Comments |
-| facility_id        | integer - references Facilities |
-| created_at         | datetime |
-| updated_at         | datetime |
+| id                 |  integer | null: false, primary key |
+| comment_id         | integer | null: false, foreign_key: true |
+| facility_id        | integer | null: false, foreign_key: true |
+| created_at         | datetime | null: false
+| updated_at         | datetime | null: false
 
 ### Association
 - belongs_to :comment
@@ -77,11 +78,11 @@
 ## Favoritesテーブル
 | Column             | Type    | Options     |
 | ------------------ | ------  | ----------- |
-| id                 | integer |
-| user_id            | integer - references Users |
-| park_id            | integer - references Parks |
-| created_at         | datetime |
-| updated_at         | datetime |
+| id                 | integer | null: false, primary key |
+| user_id            | integer |null: false, foreign_key: true |
+| park_id            | integer |null: false, foreign_key: true |
+| created_at         | datetime | null: false |
+| updated_at         | datetime | null: false |
 
 ### Association
 - belongs_to :user
