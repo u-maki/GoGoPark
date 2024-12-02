@@ -74,8 +74,8 @@
 | ------------------ | ------  | ----------- |
 | id                 | integer | null: false, primary key |
 | content            | text    | null: false |
-| user_id            | integer - references Users |
-| park_id            | integer - references Parks |
+| user_id            | integer | null: false, foreign_key: true |
+| park_id            | integer | null: false, foreign_key: true |
 | created_at         | datetime | null: false |
 | updated_at         | datetime | null: false |
 
